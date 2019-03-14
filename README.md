@@ -2,8 +2,9 @@
 
 ## What are the preconditions?
   
-  * Java 8
+  * Java 8 (Environment Variables/Paths added to system)
   * Appium is installed via NPM
+  * Android Studio (for Windows => Phone connection)  
   * Android device (developer mode activated)
   * IntelliJ IDEA (or similar IDE)
  
