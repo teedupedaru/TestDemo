@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+
+  dc-selenium-hub:
+    image: selenium/hub
+    ports:
+      - "8044:4444"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - test-messaging
+
+  dc-android-container:
+    image: butomo1989/docker-android-x86-8.1
+    privileged: true
+    ports:
+      - "7001:6080"
+      - "4723:4723"
+      - "5554:5554"
+      - "7005:5555"
+    environment:
+      DEVICE: Samsung Galaxy S6
+      APPIUM: "true"
+      CONNECT_TO_GRID: "true"
+      APPIUM_HOST: dc-android-container
+      APPIUM_PORT: 4723
+      SELENIUM_HOST: dc-selenium-hub
+      SELENIUM_PORT: 4444
+      MOBILE_WEB_TEST: "false"
+      AUTO_RECORD: "false"
+    depends_on:
+      - dc-selenium-hub
+    networks:
+      - test-messaging
+
+networks:
+  test-messaging:

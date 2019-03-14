@@ -1,0 +1,19 @@
+currentRunner: ANDROID
+environment: dev
+
+deviceAndroid:
+  platform_name: Android
+  platform_version: 7.0
+  device_name: Samsung S6
+  app_package: ee.paxful.incdb
+
+deviceiOS:
+  platform_name: iOS
+  platform_version:
+  device_name:
+  app_package:
+
+local:
+  path_to_app: apps
+  appIOSName:
+  appAndroidName: app-debug.apk

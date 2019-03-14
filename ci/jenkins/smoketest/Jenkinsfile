@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages {
+
+        stage('Execute tests') {
+            agent { docker { image 'openjdk:8-jdk' } }
+            steps {
+                checkout scm
+                sh './gradlew clean smokeTest -DcurrentRunner=${currentRunner}'
+
+            }
+            post {
+                always {
+                    stash name: 'allure-results', includes: 'build/allure-results/*'
+                }
+            }
+        }
+    }
+    post {
+        always {
+              unstash 'allure-results'
+              script {
+                  allure([
+                      includeProperties: false,
+                      jdk: '',
+                      properties: [],
+                      reportBuildPolicy: 'ALWAYS',
+                      results: [[path: 'build/allure-results']]
+                  ])
+              }
+        }
+    }
+}

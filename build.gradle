@@ -1,0 +1,64 @@
+
+group 'com.luminor.dc.testautomation'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter ()
+    }
+    dependencies {
+        classpath 'io.qameta.allure:allure-gradle:2.5'
+    }
+}
+
+apply plugin: 'io.qameta.allure'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+allure {
+    autoconfigure = true
+    version = '2.7.0'
+
+    useJUnit5 {
+        version = '2.7.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.mashape.unirest:unirest-java:1.4.9'
+    compile 'org.apache.httpcomponents:httpclient:4.5.6'
+    compile 'org.apache.httpcomponents:httpasyncclient:4.1.3'
+    compile 'org.apache.httpcomponents:httpmime:4.5.6'
+    compile 'org.json:json:20180130'
+    compile 'com.google.code.gson:gson:2.8.5'
+    compile 'javax.mail:mail:1.4.1'
+    compile 'org.yaml:snakeyaml:1.21'
+    testCompile 'io.appium:java-client:6.1.0'
+    testCompile 'org.assertj:assertj-core:3.10.0'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    compile 'com.googlecode.json-simple:json-simple:1.1'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'
+}
+
+
+test {
+    ignoreFailures = true
+    systemProperty 'currentRunner', System.properties['currentRunner'] ?: null
+    useJUnitPlatform()
+}
+
+task smokeTest(type: Test) {
+    ignoreFailures = true
+    systemProperty 'currentRunner', System.properties['currentRunner'] ?: null
+    useJUnitPlatform {
+        includeTags 'SmokeTest'
+    }
+}
+
+wrapper.gradleVersion = '4.8.1'
