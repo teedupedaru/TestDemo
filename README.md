@@ -9,15 +9,15 @@
  
 ## Setting up for testing Paxful ICNDB application on Android device:
 
-  * Navigate to src\main\resources\config\config.yaml to edit Android device details on which you want to test on, at the moment set up with Android 7.0.
+  * Navigate to src\main\resources\config\config.yaml to edit Android device details on which you want to test on, at the moment set up     with Android 7.0.
   * As the .apk file is added to the project there is no need to install it to the phone, framework will handle it.
   * It is written out below what commands you need to run the full suite (all tests are marked with @test annotations)
-  * It is possible to run all test separately, then just right click on a test and choose Run.   
+  * It is possible to run all test separately, then just right click on a test and choose Run. 
     
 ## Paxful ICNDB application test coverage overview
 
   * As the ICNDB application did not have to many functionalities I automated most of them - total 7 tests.
-  * JokesTests (src\test\java\com\luminor\dc\testautomation\tests\JokesTest.java) covers Chuck Jokes and My Jokes screens and SettingsTests (src\test\java\com\luminor\dc\testautomation\tests\SettingsTest.java) covers Setting screen.
+  * JokesTests (src\test\java\com\luminor\dc\testautomation\tests\JokesTest.java) covers Chuck Jokes and My Jokes screens and               SettingsTests (src\test\java\com\luminor\dc\testautomation\tests\SettingsTest.java) covers Setting screen.
 
 ## How the project structure looks like?
 
